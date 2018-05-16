@@ -4,7 +4,12 @@ const cors = require('cors');
 const passport = require('passport');
 const express = require('express');
 const mongoose = require('mongoose');
+
+
 const users = require('./routes/users');
+const questions = require('./routes/questions');
+
+
 const app = express();
 const port = 3000;
 const config = require('./config/database');
@@ -38,8 +43,9 @@ require('./config/passport')(passport);
 //set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+//using routs
 app.use('/users', users);
-
+app.use('/questions', questions);
 
 app.get('/', (req, res) => {
     res.send('Invalid endpoint');
